@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#170f22">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Triskelion">
+  <title>Triskelion</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&family=GFS+Didot&family=Commissioner:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="bar" id="bar">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="-50 -50 100 100" aria-hidden="true"><use href="#triskele" x="-50" y="-50" width="100" height="100"/></svg>
+      <h1>Triskelion</h1>
+    </div>
+    <div class="bar-actions">
+      <button class="chip" id="wakeBtn" type="button" aria-pressed="false" title="Empêche l'écran de se mettre en veille">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c-5 0-9 4.5-10 7 1 2.5 5 7 10 7s9-4.5 10-7c-1-2.5-5-7-10-7Zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z"/></svg>
+        <span>Écran actif</span>
+      </button>
+      <button class="chip" id="resetAllBtn" type="button" title="Remettre tous les Triskelions à 0">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4a8 8 0 1 1-7.7 10h2.1A6 6 0 1 0 8 7.5L10.5 10H4V3.5l2.6 2.6A8 8 0 0 1 12 4Z"/></svg>
+        <span>Fin du combat</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="board" class="board"></main>
+
+  <!-- Fiche d'édition d'un Argonaute -->
+  <dialog id="editDialog" class="sheet">
+    <form method="dialog" id="editForm">
+      <h2>Argonaute</h2>
+
+      <div class="portrait-field">
+        <div class="portrait-preview" id="portraitPreview" aria-hidden="true"></div>
+        <div class="portrait-actions">
+          <label class="ghost file-btn">
+            <input type="file" id="portraitInput" accept="image/*">
+            Choisir un portrait
+          </label>
+          <button type="button" class="ghost" id="portraitClear">Retirer le portrait</button>
+        </div>
+      </div>
+
+      <label class="field">
+        <span>Nom</span>
+        <input id="nameInput" name="name" type="text" maxlength="28" autocomplete="off" enterkeyhint="done" required>
+      </label>
+      <fieldset class="field">
+        <legend>Couleur du plateau</legend>
+        <div class="swatches" id="swatches"></div>
+      </fieldset>
+      <div class="sheet-actions">
+        <button type="button" class="ghost death-btn" id="deathBtn">† Déclarer mort</button>
+        <span class="spacer"></span>
+        <button type="button" class="ghost" id="cancelBtn">Annuler</button>
+        <button type="submit" class="primary" value="save">Enregistrer</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Confirmation -->
+  <dialog id="confirmDialog" class="sheet small">
+    <form method="dialog">
+      <p id="confirmText"></p>
+      <div class="sheet-actions">
+        <span class="spacer"></span>
+        <button value="no" class="ghost">Annuler</button>
+        <button value="yes" class="primary" id="confirmYes">Confirmer</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <!-- Symbole triskèle réutilisable -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="triskele" viewBox="-50 -50 100 100">
+        <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round">
+          <path id="arm" d="M0 0 C 6 -14, 24 -20, 34 -10 C 42 -2, 36 12, 24 12 C 16 12, 12 4, 18 0"/>
+          <use href="#arm" transform="rotate(120)"/>
+          <use href="#arm" transform="rotate(240)"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "Triskelion — Aeon Trespass: Odyssey",
+  "short_name": "Triskelion",
+  "description": "Suivi du Danger, du Destin et de la Rage des Argonautes.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#170f22",
+  "theme_color": "#170f22",
+  "lang": "fr",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
